@@ -1,0 +1,11 @@
+public class Foobar {
+	public static void foobar(int end) {
+	IntStream.rangeClosed(0, end).mapToObj(
+	        i -> i % 3 == 0 ? (i % 5 == 0 ? "foobar" : "foo") 
+	        		        : (i % 5 == 0 ? "bar" : i))
+	        .forEach(System.out::println);
+  }
+      public static void main(String[] args) {
+	foobar(100);
+      }
+}
