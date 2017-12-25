@@ -1,0 +1,36 @@
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class WordFrequence {
+
+	static Path myPath = Paths.get("wordFrequenceTest.txt");
+  
+	public static void main(String[] args) {
+		wordFrequence(myPath);
+
+	}
+
+	public static void wordFrequence(Path path){
+	try {
+	 	Files.lines(path)
+		.flatMap(line -> Stream.of(line.split("\\s+")))
+		.map(String::toLowerCase)
+		.collect(Collectors.toMap(word -> word, word -> 1, Integer::sum))
+		.entrySet()
+		.stream()
+		// First sort by frequency descending and then sort by word.
+		.sorted((a, b) -> a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey()) : b.getValue() - a.getValue())
+		.forEach(System.out::println);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
+}
+
+
