@@ -1,0 +1,37 @@
+public class ReturnMaxValueFtomTab {
+
+	public static void main( String[] args ){
+		int[] numbers = {1,7,3,4,5};
+		System.out.println(largestNumber( numbers));
+		
+	}
+		private static int largestNumber(int[] numbers) {
+
+	    		 return Integer.parseInt(
+	    		             Arrays.stream(numbers)
+	    		            .boxed()
+	    		            .sorted(Collections.reverseOrder())
+	    		            .map(i -> String.valueOf(i))
+	    		           .collect(Collectors.joining()));
+	    	}
+}
+
+//======================================= version 2 ====================================================
+import java.util.Arrays;
+import java.util.Collections;
+
+public class DisplayMaxValueFtomTab {
+
+	public static void main( String[] args ){
+		int[] numbers = {1,7,3,4,5};
+		largestNumber( numbers);
+ }
+	
+	private static void largestNumber(int[] numbers) {
+	            Arrays.stream(numbers)
+	            .boxed()
+	            .sorted(Collections.reverseOrder())
+	            .forEach(System.out::print);
+	 }
+
+}
