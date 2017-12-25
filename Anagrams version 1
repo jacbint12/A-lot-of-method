@@ -1,0 +1,29 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Anagrams {
+
+	public static void main(String[] args) {
+		anagram ("test/example.txt");
+	}
+
+public static void anagram (String filepath){
+	try (Stream<String> stream = Files.lines(Paths.get(filepath))) {
+	   Map<Object, Set<String>> anagrams =
+		        stream.collect(Collectors.groupingBy(w -> sorted(w), Collectors.toSet()));
+			anagrams.values().forEach(System.out::println);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+ }
+ 
+public static String sorted(String word) {
+    return Stream.of(word.split("")).sorted().collect(Collectors.joining());
+  }
+	
+}
