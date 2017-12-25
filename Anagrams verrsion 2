@@ -1,0 +1,20 @@
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class task3 {
+
+	public static void main(String[] args) {
+		String word1="babou";
+		String word2="bouba";
+       if ( isAnnagram( word1, word2))
+    	   System.out.println(word1 +" and "+ word2 +" are annagrams");
+       else  System.out.println(word1 +" and "+ word2 +" are not annagrams");
+	}
+	
+	public static boolean isAnnagram(String str1, String str2) {
+		return sort(str1).equals(sort(str2));
+    } 
+	public static String sort(String word) {
+		return Stream.of(word.split("")).sorted().collect(Collectors.joining());
+	}
+}
