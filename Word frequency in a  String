@@ -11,7 +11,6 @@ public class wordFrequence1 {
 	}
 
 	public static void wordFrequence(String string){
-	//	Files.lines(path)
 	Arrays.stream(string.split("\\s+"))
 	.map(String::toLowerCase)
 	.collect(Collectors.toMap(word -> word, word -> 1, Integer::sum))
