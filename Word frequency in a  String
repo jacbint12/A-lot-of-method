@@ -1,0 +1,24 @@
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+public class wordFrequence1 {
+
+	static String input = "It was the best of times it was the worst of times";
+	public static void main(String[] args) {
+		wordFrequence(input);
+
+	}
+
+	public static void wordFrequence(String string){
+	//	Files.lines(path)
+	Arrays.stream(string.split("\\s+"))
+	.map(String::toLowerCase)
+	.collect(Collectors.toMap(word -> word, word -> 1, Integer::sum))
+	.entrySet()
+	.stream()
+	// First sort by frequency descending and then sort by word.
+	.sorted((a, b) -> a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey()) : b.getValue() - a.getValue())
+	.forEach(System.out::println);
+	}
+}
