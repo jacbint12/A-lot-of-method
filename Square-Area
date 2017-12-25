@@ -1,0 +1,23 @@
+
+class areaSuare {
+
+    float area(float length) {
+      return length*length;
+    }
+
+    float area(float base, float height)  {
+        return base*height;
+    }
+
+    Double area(double radius)   {
+     return Math.PI*radius*radius;
+     }
+
+     public static void main(String args[]) 	{
+    	 areaSuare as = new areaSuare();
+	  System.out.println(as.area(5));
+	  System.out.println(as.area(11,12));
+	  System.out.println(as.area(2.5));
+    }
+
+}
