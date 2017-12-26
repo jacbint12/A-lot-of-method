@@ -20,29 +20,28 @@ public class BalancedParentheses {
 
 		     for(int i=0; i < input.length(); i++){
 			   String str = ""+input.charAt(i);
-		        if(str.equals("(") || str.equals("[") || str.equals("{")){  //Push  opening bracket into stack
-			       myStack.push(str);
-		         }
-	    	//  Pop closing bracket and check if its a pair
-	        	if(str.equals(")") || str.equals("]") || str.equals("}")){
-					if(myStack.isEmpty()){
-			        	return false;
-			         }
-					String opening = myStack.peek();
-					 if (str.equals(")") && opening.equals("(")){
-						myStack.pop();
-					 }
-					if (str.equals("]") && opening.equals("[")){
-						myStack.pop();
-					}
-					if(str.equals("}") && opening.equals("{")){
-						myStack.pop();
-					 }
-		         }	// end if		
+			
+				if (str.equals("(") || str.equals("[") || str.equals("{")){  //Push  opening bracket into stack
+				       myStack.push(str);
+				 } // end if
+	                	//  Pop closing bracket and check if its a pair
+				if(  (str.equals(")") || str.equals("]") || str.equals("}"))  && myStack.isEmpty() ) {
+				    return false;
+				 }  // end if
+			         String opening = myStack.peek();
+										
+				if (  (str.equals(")") || str.equals("]") || str.equals("}"))  &&  (
+						  (str.equals(")") && opening.equals("("))
+						  || (str.equals("]") && opening.equals("[")) 
+						  || (str.equals("}") && opening.equals("{")))  ) {
+				 myStack.pop();
+				 }  // end if
+					
 		     } // end for
+		     
 		  if(input.length() > 0 && myStack.isEmpty()){   //if stack is empty at end, then its balanced
 			isBalanaced = true;
-		  }
+		  } // end if
 		return isBalanaced;
     } // end method checkBalancedParentheses
 	
