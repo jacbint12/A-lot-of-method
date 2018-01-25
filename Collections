@@ -1,0 +1,18 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Stream;
+
+public class Test {
+	Integer [ ] numbersA ={1,2,3,4};
+	Integer [ ] numbersB ={1,2,3,4};
+  
+  // Take an array of Integers and return an array pf Even numbers.
+public Integer [ ]  getEven(Integer [ ] numbersA){
+	return Arrays.stream(numbersA).filter(x->x%2==0).toArray( Integer[]::new);
+}
+
+// Take 2 arrays of Integers, merge them and return an array of int (not Integer) sorted descending.
+public int [ ]  getList(Integer [ ] numbersA, Integer [ ] numbersB){
+		return Stream.of(numbersA, numbersB).filter(o->o!=null).flatMap(Stream::of).sorted(Collections.reverseOrder()).mapToInt(x->x).toArray();
+	}
+}
