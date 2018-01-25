@@ -1,0 +1,42 @@
+
+import java.util.Arrays;
+import java.util.Stack;
+import java.util.function.Function;
+
+public class BalancedParenthesesCheckng1 {
+
+	public static void main(String[] args) {
+		String[] inputs = {"{za[as(ab)ze]ds}","{[(dddz])}","{{[[(ds(ffd))]]}}"};
+		System.out.println( Arrays.toString(checkIfBalanced(inputs)));
+
+	}
+// Take a array  as parameters and return an array
+public static String[] checkIfBalanced( String[] values)  {
+	
+	Function<String, String> checkBalanced = ( expr) -> {
+		 if (expr.isEmpty())
+		 return "Balanced";
+	 
+	    Stack<Character> stack = new Stack<Character>();
+		 for (int i = 0; i < expr.length(); i++)  {
+		     char current = expr.charAt(i);
+
+			 if (current == '{' || current == '(' || current == '[') { 
+				 stack.push(current);
+			 }
+	         if (current == '}' || current == ')' || current == ']') {
+				 if (stack.isEmpty()) 
+				 return "Not Balanced";
+				 char last = stack.peek();
+				 if (current == '}' && last == '{' || current == ')' && last == '(' || current == ']' && last == '[')
+				 stack.pop();
+				 else 
+				 return "Not Balanced";
+	           } // end if
+	       } // end for
+
+	   return stack.isEmpty()?"Balanced":"Not Balanced";
+	 }; // end Function
+	return Arrays.stream(values).map(x->checkBalanced.apply(x)).toArray(String[]::new);
+  }
+}
