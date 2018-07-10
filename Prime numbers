@@ -1,0 +1,17 @@
+public class PrimeNumber {
+
+	public static void main(String[] args) {
+		primeNumbers(3, 100);
+
+	}
+
+	  public static void primeNumbers(int start, int end) {
+	        IntStream.rangeClosed(start, end)
+	            .filter(i -> IntStream.rangeClosed(2, (int)Math.sqrt(i))
+	                    .allMatch(j -> i%j != 0))
+	            .forEach(n -> {
+	                System.out.println(n);
+	            });
+	    }
+	 
+}
