@@ -1,0 +1,27 @@
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class ValidateIPaddress1 {
+
+    public static void main(String a[]){
+    	ValidateIPaddress1 val = new ValidateIPaddress1 ();
+    	List<String> list = new ArrayList<>();
+             list.add("255.255.255.12");
+             list.add("355.255.255.12");
+             list.add ("255.255.256.12");
+             list.add("255.255.25.12");
+             list.stream().map(x->val.getIPAddress(x)).filter(x->x !="").forEach(System.out::println);
+    }
+    public String getIPAddress(String ipString){
+       String regex = "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\\.|$)){4}";
+
+      Pattern pattern = Pattern.compile(regex);
+      Matcher matcher = pattern.matcher(ipString);
+
+      return matcher.find() ? matcher.group() : "";
+
+ }
+}
