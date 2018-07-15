@@ -1,0 +1,17 @@
+
+import java.util.Scanner;
+
+public class StringPalindrome {
+
+	 public static void main(String[] args) {
+		 
+		  Scanner scanner = new Scanner(System.in);
+		  StringBuilder sb = new StringBuilder();
+		  System.out.print("Enter string : ");
+		  String str = scanner.nextLine();
+		  String reverseStr = sb.append(str).reverse().toString();
+		  System.out.println( str.equals(reverseStr) ? "This string is a palindrome": "This string is not a palindrome" );
+		   scanner.close();
+		 }
+		
+}
