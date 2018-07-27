@@ -9,3 +9,21 @@ public class Foobar {
 	foobar(100);
       }
 }
+//------------------------Version 2------------------------------------
+
+public class foobar {
+
+public static String fizzbuzz(int N, int M) {
+ 
+     String sequence = IntStream.rangeClosed(N, M).mapToObj(
+	        i -> i % 3 == 0 ? (i % 5 == 0 ? "FizzBuzz" : "Fizz") 
+	        		        : (i % 5 == 0 ? "Buzz" : ""+i)).collect(Collectors.joining(" "));
+			
+             //   System.out.println(sequence);
+		return sequence;
+	}
+	
+    public static void main(String[] args) {
+	foobar(1, 100);
+      }
+}
