@@ -13,7 +13,7 @@ public class Foobar {
 
 public class foobar {
 
-public static String fizzbuzz(int N, int M) {
+public static String foobar(int N, int M) {
  
      String sequence = IntStream.rangeClosed(N, M).mapToObj(
 	        i -> i % 3 == 0 ? (i % 5 == 0 ? "FizzBuzz" : "Fizz") 
