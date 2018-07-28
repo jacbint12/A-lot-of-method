@@ -1,6 +1,0 @@
-
-public class Factorielle {
-	public int factorielle(int n) {
-		  return n <= 1 ? 1 : n * factorielle(n - 1);
-		}
-}
