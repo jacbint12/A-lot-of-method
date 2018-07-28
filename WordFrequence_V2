@@ -1,0 +1,28 @@
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+public class WordFequency {
+
+	public static void main(String[] args) {
+		String myText = "It was the best of times, it was the worst of times";
+		System.out.println(wordFequency (myText).toString());
+
+	}
+
+	public  static LinkedHashMap <String, Long> wordFequency (String text){
+		 LinkedHashMap <String,Long> linked = new  LinkedHashMap<>();
+	  Stream.of(text.toLowerCase().split("\\W+")).parallel()
+			.collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+			.entrySet().stream()
+			// First sort by frequency descending and then sort by word.
+			.sorted(Map.Entry.<String,Long> comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
+		    .forEach(x -> {
+			linked.put(x.getKey(),  x.getValue());
+		  });
+         return	linked;
+	}
+}
