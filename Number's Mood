@@ -6,8 +6,10 @@ public class NumbersMood1 {
 	}
 	
 	public static String intMood1(int number) {
-		      do {
-	            List<String> numStrList = Arrays.asList(String.valueOf(number).split(""));
+	               
+                     List<String> numStrList = new ArrayList<>();
+		   do {
+	               numStrList = Arrays.asList(String.valueOf(number).split(""));
 	            number = numStrList.stream().map(i -> Math.pow(Integer.parseInt(i), 2)).mapToInt(i -> i.intValue()).sum();
 	        }while ( number !=1 && number != 4 );
 			return(number==4 ? "sad" : (number==1 ? "happy": "" ));
