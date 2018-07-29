@@ -1,0 +1,25 @@
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class IsPalindromePossible {
+	
+	// We want to check if a given string can be transformed to a palindrome without adding another character.
+
+	public static void main(String[] args) {
+		System.out.println(isPalindromePossible ("bbaabb")); // true
+		System.out.println(isPalindromePossible ("bbbbaa")); // true
+		System.out.println(isPalindromePossible ("bbaai"));  // true
+		System.out.println(isPalindromePossible ("bbbbai"));  // false
+	}
+
+	public  static boolean isPalindromePossible (String string){
+     
+	 // It must be 0 or 1 character appearing at impair time in the string.
+	  long singleton  = Stream.of(string.toLowerCase().split(""))
+			.collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+			.entrySet().stream().filter(x-> x.getValue() % 2 != 0).count();
+	
+	  return singleton <=1 ;
+	}
+}
