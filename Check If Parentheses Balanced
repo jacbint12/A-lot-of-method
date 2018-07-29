@@ -1,0 +1,33 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
+public class CheckIfParenthesesBalanced {
+
+	private static final Map<Character, Character> brackets= new HashMap<>();
+	static{
+	brackets.put('{', '}');
+	brackets.put('[', ']');
+	brackets.put('(', ')');
+	}
+
+	public static String checkBalanced(String input) {
+	    Stack<Character> stack = new Stack<Character>();
+		for(char c:input.toCharArray()){
+	      if(brackets.containsKey(c)){
+		     stack.push(c);
+		   }else if( brackets.containsValue(c) && ( stack.isEmpty() || (brackets.get(stack.pop()) != c) )){
+		    	return "Not Balanced";
+		    }
+		}// end for
+	  return stack.isEmpty()?"Balanced":"Not Balanced";
+	}
+	
+    public static void main(String[] args) {
+
+		 System.out.println("a*(b+c)-(d*e) : "+ checkBalanced("a*(b+c)-(d*e)"));
+		 System.out.println("(a*(b-c)*{d+e} : " + checkBalanced("(a*(b-c)*{d+e}"));
+		 System.out.println("{{[[((ffd))]]}} : "+ checkBalanced("{{[[((ffd))]]}}"));
+	}
+
+}
