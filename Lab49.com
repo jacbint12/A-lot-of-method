@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class Test4 {
+class Solution {
 	  private final static class Athlete {
 	    public final int height;
 	    public final String profession;
