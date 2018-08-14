@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+public class Combination{
+
+	public static void main(String[] args) {
+		
+		System.out.println(Combination.solution(1213).count()); // Number of combination possible with 1213 = 12
+		System.out.println(Combination.solution(100).count()); // Number of combination possible with 100 = 1 (leading "0" not accepted)
+		Combination.solution(123).forEach(System.out::println); // combination possible with 123: [123, 132, 213, 231, 312, 321]
+	}
+   public static  Stream<String> solution(int N) {
+    	final List<String> items = Arrays.asList((N+"").split(""));
+        return IntStream.range(0, factorial(items.size())).mapToObj(i -> permutation(i, items).stream()
+                         .collect(Collectors.joining())).distinct().
+                         filter(x->!x.startsWith("0"));  // Combination having leading "0" is not accepted
+    }
+
+    private static int factorial(final int num) {
+        return IntStream.rangeClosed(2, num).reduce(1, (x, y) -> x * y);
+    }
+
+    private static  List<String> permutation(final int count, final LinkedList<String> input, final List<String> output) {
+        if (input.isEmpty()) { return output; }
+        final int factorial = factorial(input.size() - 1);
+        output.add(input.remove(count / factorial));
+        return permutation(count % factorial, input, output);
+    }
+
+    private static List<String> permutation(final int count, final List<String> items) {
+        return permutation(count, new LinkedList<>(items), new ArrayList<>());
+    }
+}
