@@ -1,0 +1,27 @@
+
+import java.util.Map;
+import java.util.stream.Collectors;
+
+// return the loongestsubstring from a given string.
+
+public class LongestSubstring {
+
+public static void main(String[] args) {
+		String string = "it is a pleasant day today";
+		System.out.println(longestSubstring(string));
+		String string1 = "today";
+		System.out.println(longestSubstring(string1));
+	}
+	
+	public static String longestSubstring(String string){
+	
+		return Arrays.stream(string.split("\\s+"))
+			.map(String::toLowerCase).distinct()
+			.collect(Collectors.toMap(word -> word, String::length))
+			.entrySet()
+			.stream()
+			.sorted(Map.Entry.<String,Integer> comparingByValue().reversed())
+			.findFirst().get().getKey();
+		
+}
+}
