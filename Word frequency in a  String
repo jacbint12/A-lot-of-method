@@ -17,7 +17,7 @@ public class wordFrequence1 {
 	.entrySet()
 	.stream()
 	// First sort by frequency descending and then sort by word.
-	.sorted((a, b) -> a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey()) : b.getValue() - a.getValue())
+	.sorted(Map.Entry.<String,Long> comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
 	.forEach(System.out::println);
 	}
 }
