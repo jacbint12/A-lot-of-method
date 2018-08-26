@@ -18,7 +18,7 @@ public class Combination{
     	final List<String> items = Arrays.asList((N+"").split(""));
         return IntStream.range(0, factorial(items.size())).mapToObj(i -> permutation(i, items).stream()
                          .collect(Collectors.joining())).distinct().
-                         filter(x->!x.startsWith("0"));  // Combination having leading "0" is not accepted
+                         filter(x->!x.startsWith("0"));  // Combination having leading "0" e.g 01 or 001 is not accepted
     }
 
     private static int factorial(final int num) {
