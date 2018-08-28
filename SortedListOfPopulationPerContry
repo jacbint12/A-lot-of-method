@@ -22,28 +22,24 @@ import java.util.*;
 					this.population=population;
 				}
 			}
-		
-	    public static  LinkedHashMap <String,Integer>  magic(List<City> cities) {
-	    	 LinkedHashMap <String,Integer> linked = new  LinkedHashMap<>();
-	         cities.stream().collect(Collectors.groupingBy(x-> x.getContry()
-	        ,Collectors.summingInt(x->x.getPopulation())))
-	        .entrySet()
-	        .stream()
-	        .sorted(Map.Entry.<String,Integer> comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
-		    .forEach(x -> {
-			linked.put(x.getKey(),  x.getValue());
-		  });
-         return	linked;
+	  public static  LinkedHashMap <String,Integer>  magic(List<City> cities) {
+	    
+	       return  cities.stream().collect(Collectors.groupingBy(x-> x.getContry()
+			,Collectors.summingInt(x->x.getPopulation())))
+			.entrySet()
+			.stream()
+			.sorted(Map.Entry.<String,Integer> comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
+			.collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	    }
-	 
-		public static void main(String[] args) {
+		
+	   public static void main(String[] args) {
 			 List<City> cities =  Arrays.asList(
-									new City("Belgium",1000000),
-								    new City("Belgium",500000),
-								    new City("France",1000000),
-									new City("France",1000000),
-								    new City("UK",3000000),
-									new City("Germany",2000000) // 20000000 as France
+								  new City("Belgium",1000000),
+								  new City("Belgium",500000),
+								  new City("France",1000000),
+								  new City("France",1000000),
+								  new City("UK",3000000),
+								  new City("Germany",2000000) // 20000000 as France
 						       	);
 	
 		magic(cities).entrySet().forEach(System.out::println );
