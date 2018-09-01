@@ -1,0 +1,34 @@
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ConcatArrayElements {
+
+	public static void main(String[] args) {
+          concatArrayElements();
+	}
+	public static void concatArrayElements(){
+		List<Integer> list = Arrays.asList(6, 5, 1, 0, 9);
+		String[] strings = {"A","B","C"};
+		char[] chars = {'A','B','C'};
+		int [] ints = {1,2,3};
+		
+		int value = Integer.parseInt(list.stream()
+	            .map(i -> Integer.toString(i))
+	            .reduce("", String::concat));
+	    		
+		int value1 = Integer.parseInt(Arrays.stream(ints)
+				.boxed()
+	            .map(i -> Integer.toString(i))
+	            .reduce("", String::concat));
+		
+		System.out.println(String.copyValueOf(chars));
+		System.out.println(String.join("", strings ));
+		System.out.println(Arrays.stream(strings).reduce("", String::concat));
+		System.out.println(Arrays.stream(strings).collect(Collectors.joining()));
+		System.out.println(value);
+		System.out.println(value1);
+		
+	}
+}
