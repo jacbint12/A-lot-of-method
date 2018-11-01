@@ -1,0 +1,29 @@
+public class SearchInSortedArray {
+
+	public static void main(String[] args) {
+		SearchInSortedArray ssa = new SearchInSortedArray();
+	//	int[] nums ={10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+		int[] nums ={14, 15, 16, 17, 18, 19, 10, 11, 12, 13};
+		 int target = 12;
+		System.out.println(ssa.search(nums, target));
+	}
+
+	public int search(int[] nums, int target) {
+	    return binarySearch(nums, 0, nums.length-1, target);
+	}
+	 
+  static int binarySearch(int arr[], int low, int high, int key)
+    {
+       if (high < low)
+           return -1;
+        
+       int mid = low + (high - low)/2; 
+       return  ( key == arr[mid] ? mid
+    		                       : (key > arr[mid] ? binarySearch(arr, (mid + 1), high, key)
+    		                    		             : binarySearch(arr, low, (mid -1), key) 
+    		                         ) 
+    		     ) ;
+    }
+	
+      
+}
