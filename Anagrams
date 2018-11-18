@@ -7,14 +7,15 @@ public class Anagrams {
 		String word1="babou";
 		String word2="bouba";
        if ( isAnnagram( word1, word2))
-    	   System.out.println(word1 +" and "+ word2 +" are annagrams");
-       else  System.out.println(word1 +" and "+ word2 +" are not annagrams");
+    	   System.out.println("YES");
+       else  System.out.println("NO");
 	}
 	
 	public static boolean isAnnagram(String str1, String str2) {
 		return sort(str1).equals(sort(str2));
     } 
 	public static String sort(String word) {
-		return Stream.of(word.split("")).sorted().collect(Collectors.joining());
+	  return Stream.of(word.toLowerCase().replaceAll("[^A-Za-z0-9]", "").split("")).sorted()
+				.collect(Collectors.joining());
 	}
 }
