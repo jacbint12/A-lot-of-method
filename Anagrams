@@ -4,8 +4,8 @@ import java.util.stream.Stream;
 public class Anagrams {
 
 	public static void main(String[] args) {
-		String word1="babou";
-		String word2="bouba";
+		String word1="I am' babou & I got - 2_ car,";
+		String word2="I am bouba I got 2 car";
        if ( isAnnagram( word1, word2))
     	   System.out.println("YES");
        else  System.out.println("NO");
