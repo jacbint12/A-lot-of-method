@@ -1,7 +1,10 @@
 public class PrimeNumber {
 
 	public static void main(String[] args) {
-		primeNumbers(3, 100);
+	        isPrime(2);
+		isPrime(3);
+		isPrime(4);   
+		primeNumbers(3, 100); // Prime number from a given list
 
 	}
 
@@ -13,5 +16,8 @@ public class PrimeNumber {
 	                System.out.println(n);
 	            });
 	    }
-	 
+	 pblic static boolean isPrime (final int number){
+	    return number > 1 && IntStream.range(2, number).noneMatch (i -> number % i ==0);
+	                 
+	 }
 }
