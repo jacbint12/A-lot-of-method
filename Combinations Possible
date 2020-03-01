@@ -13,12 +13,20 @@ public class Combination{
 		System.out.println(Combination.solution(1213).count()); // Number of combination possible with 1213 = 12
 		System.out.println(Combination.solution(100).count()); // Number of combination possible with 100 = 1 (leading "0" not accepted)
 		Combination.solution(123).forEach(System.out::println); // combination possible with 123: [123, 132, 213, 231, 312, 321]
+	        System.out.println(Combination.solution("bou").count()); // Number of combination possible with 1213 = 6
+		Combination.solution("bou").forEach(str -> System.out.print(str+" ")); // combination possible with bou: bou buo obu oub ubo uob 
 	}
    public static  Stream<String> solution(int N) {
     	final List<String> items = Arrays.asList((N+"").split(""));
         return IntStream.range(0, factorial(items.size())).mapToObj(i -> permutation(i, items).stream()
                          .collect(Collectors.joining())).distinct().
                          filter(x->!x.startsWith("0"));  // Combination having leading "0" e.g 01 or 001 is not accepted
+    }
+
+    public static  Stream<String> solution (String S) {
+    	final List<String> items = Arrays.asList((S).split(""));
+        return IntStream.range(0, factorial(items.size())).mapToObj(i -> permutation(i, items).stream()
+        		.collect(Collectors.joining())).distinct().filter(x->!x.startsWith("0"));
     }
 
     private static int factorial(final int num) {
