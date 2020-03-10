@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class  ReplaceSpecificCharWithRandomCharFromString {
     
-    public static final String RANDOM_STRING = "a1b2c3d4";
+    static final String RANDOM_STRING = "a1b2c3d4";
     static String input = "abc#def#ghi#jkl";
      
     public static void main(String[] args) {
