@@ -9,7 +9,7 @@ public class  ReplaceSpecificCharWithRandomCharFromString {
     static String input = "abc#def#ghi#jkl";
      
     public static void main(String[] args) {
-        System.out.println( replaceRandom1(input));
+        System.out.println( replaceRandom1(input)); // You will get something like "abcadef2ghibjkl". #--> a; #--> 2; #--> b;
     }
     //Replace all '#' in the string input with a random character from the string RANDOM_STRING
     private static String replaceRandom1(String inputString) {
