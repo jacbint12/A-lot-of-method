@@ -1,0 +1,43 @@
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.stream.IntStream;
+
+public class TrappingRainWater2 {
+	
+
+
+	public static void main(String[] args) {
+		
+		int[] array	={0,1,0,2,1,0,1,3,2,1,2,1}; // Should return 6
+		int[] array1 =	{0,1,0,2,1,0,1,2,0,4};  // Should return 7
+		
+		System.out.println(trap(array));
+		System.out.println(trap(array1));
+	}
+	
+	public static int trap(int[] height) {
+        if(height == null || height.length <= 2) {
+            return 0;
+        }
+       
+       int lenght = height.length;
+        Deque<Integer> stack = new ArrayDeque<>(lenght);
+        stack.push(0);
+        
+        return IntStream.range(1, lenght).map(i ->{
+        	 int previous, top, distance, current = height[i], unit =0;
+             while(!stack.isEmpty() && current > height[stack.peek()]) {
+                previous = stack.pop();
+                if(stack.isEmpty()) break;
+                top = stack.peek();
+                distance = i - top - 1;
+                unit += distance * Math.min(current - height[previous], height[top] - height[previous]);
+            }
+            stack.push(i); 
+            return unit;
+        }).sum();
+ 
+    }
+
+}
