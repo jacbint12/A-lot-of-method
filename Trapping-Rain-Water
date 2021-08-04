@@ -1,0 +1,24 @@
+
+public class TrappingRainWater {
+
+public static void main(String[] args) {
+		
+		int[] array	={0,1,0,2,1,0,1,3,2,1,2,1};  // Should return 6
+		int[] array1 =	{0,1,0,2,1,0,1,2,0,4};  // Should return 7
+		
+		System.out.println(trap(array));
+		System.out.println(trap(array1));
+	}
+	
+	public static int trap(int[] height) {
+		if(height == null || height.length<= 2) return 0;
+		int leftMax = 0, rightMax = 0, left = 0, right = height.length-1, unit = 0;
+		while(left < right ) {
+		leftMax = leftMax > height[left] ? leftMax : height[left]; 
+		rightMax = rightMax > height[right] ? rightMax : height[right];
+		unit += leftMax < rightMax ? leftMax - height[left++] : rightMax - height[right--];
+		}
+		return unit;
+		}
+
+}
