@@ -1,0 +1,25 @@
+
+import java.util.Arrays;
+
+
+public class ReduceIntegerToOneDigit {
+
+ 
+    public static void main(String[] args) {
+       System.out.println(getNumber(27));
+       System.out.println(getNumber(6));
+       System.out.println(getNumber(93));
+         
+    }
+    
+   public static int getNumber(int input) {
+	   String string = String.valueOf(input);
+	   int compt=0;
+	   while(string.length()>1) {
+		   string = String.valueOf(Arrays.stream(string.split("")).map(x->Integer.parseInt(x)).reduce((a,b)->a*b).get());
+		   compt++;
+	   }
+	    return compt;
+   }
+}
+// First exeercice was on TDD apoproach
