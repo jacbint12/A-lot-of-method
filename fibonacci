@@ -1,0 +1,38 @@
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+public class Fibonancy {
+
+     public static List<Integer> getFibo(int n) {
+      return   Stream.iterate(new int[]{1, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(n)
+                .map(t -> t[1])
+                .toList();
+    }
+
+
+    public static List<Integer> getFibonancy() {
+
+        List<Integer> numbers = new ArrayList<>();
+        return IntStream.rangeClosed(0,10).map(x-> {
+            if (x == 1 || x == 0) {
+                numbers.add(x);
+            }else {
+                numbers.add((numbers.get(x - 1) + numbers.get(x - 2)));
+            }
+            return numbers.get(x);
+        }).boxed().toList();
+    }
+
+   
+ public static void main( String[] args ){
+        System.out.println(Arrays.toString(getFibo(10)));
+        System.out.println(getFibonancy());
+   
+
+    }
+}
